@@ -1,12 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CacheInvalidate\Model;
 
 use Magento\Framework\Cache\InvalidateLogger;
-use Magento\Framework\App\DeploymentConfig;
 
 class PurgeCache
 {
@@ -67,6 +66,7 @@ class PurgeCache
                     '1.1',
                     $headers
                 );
+                $socketAdapter->read();
                 $socketAdapter->close();
             } catch (\Exception $e) {
                 $this->logger->critical($e->getMessage(), compact('server', 'tagsPattern'));
